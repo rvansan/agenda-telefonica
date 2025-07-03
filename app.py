@@ -10,7 +10,8 @@ def exibe_opcoes_menu():
     print("3. editar contato")
     print("4. marcar/ desmarcar como favorito")
     print("5. exibir lista de contatos favoritos")
-    print("6. sair")
+    print("6. apagar um contato")
+    print("7. sair")
     return
 
 def adicionar_contato(contatos):
@@ -73,6 +74,20 @@ def exibir_favoritos(contatos):
     print()
     return
 
+def apagar_contato(contatos):
+    vizualizar_contatos(contatos)
+    while True:
+        try:
+            index_contato_editar = int(input("digite a chave do contato que deseja apagar: "))
+            index_ajustada = index_contato_editar - 1
+            contato = contatos[index_ajustada]
+        except:
+            print("chave inválida!")
+        else:
+            contatos.remove(contato)
+            break
+    vizualizar_contatos(contatos)
+    return
 
 contatos = [{"Nome":"Contato 1", "Telefone":"(11)99999-9999", "Email":"contato1@email.com" ,"Favorito":False},
             {"Nome":"Contato 2", "Telefone":"(11)88888-8888", "Email":"contato2@email.com" ,"Favorito":True},
@@ -98,5 +113,7 @@ while True:
         elif opcao == 5:
             exibir_favoritos(contatos)
         elif opcao == 6:
+            apagar_contato(contatos)
+        elif opcao == 7:
             break
 
